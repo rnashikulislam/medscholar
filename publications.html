@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publications Library – MedScholars Bangladesh</title>
+    <meta name="description"
+        content="Access peer-reviewed medical research, clinical trials, and epidemiological studies from scholars across Bangladesh." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        /* ── PAGE HERO ─────────────────────────────── */
+        .page-hero {
+            padding: 56px 0 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .page-hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+        }
+
+        .page-hero h1 span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            max-width: 420px;
+            line-height: 1.6;
+        }
+
+        .page-hero-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* ── FILTER BAR ────────────────────────────── */
+        .filter-bar {
+            background: var(--dark-card);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+
+        .filter-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-pill i {
+            font-size: 0.72rem;
+        }
+
+        .filter-pill:hover {
+            color: var(--white);
+            border-color: var(--accent);
+            background: var(--teal-glow);
+        }
+
+        .filter-pill.active {
+            background: var(--teal-light);
+            border-color: var(--teal-light);
+            color: #fff;
+        }
+
+        .filter-separator {
+            flex: 1;
+        }
+
+        .filter-select {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .filter-select:hover {
+            border-color: var(--accent);
+        }
+
+        .filter-select select {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .filter-select select option {
+            background: var(--dark-card);
+        }
+
+        /* ── BODY LAYOUT ───────────────────────────── */
+        .pub-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ── SIDEBAR ───────────────────────────────── */
+        .sidebar {
+            position: sticky;
+            top: 78px;
+        }
+
+        .sidebar-block {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-block h3 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-block h3 i {
+            color: var(--accent);
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .sidebar-checkbox input[type="checkbox"] {
+            accent-color: var(--accent);
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+
+        .sidebar-count {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .topic-chip {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin: 3px 3px 0 0;
+            transition: all 0.2s;
+        }
+
+        .topic-chip:hover,
+        .topic-chip.active {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--teal-glow);
+        }
+
+        .subscribe-box {
+            background: linear-gradient(135deg, rgba(26, 122, 110, 0.2), rgba(45, 203, 184, 0.08));
+            border: 1px solid rgba(45, 203, 184, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .subscribe-box h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .subscribe-box p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* ── ARTICLES MAIN ─────────────────────────── */
+        .articles-main {}
+
+        /* View toggle */
+        .view-toggle {
+            display: flex;
+            gap: 6px;
+        }
+
+        .view-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Card grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pub-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+            cursor: pointer;
+        }
+
+        .pub-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+            border-color: rgba(45, 203, 184, 0.35);
+        }
+
+        .pub-card-img {
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pub-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .pub-card:hover .pub-card-img img {
+            transform: scale(1.05);
+        }
+
+        .pub-card-body {
+            padding: 16px 18px 18px;
+        }
+
+        .pub-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pub-date {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .pub-journal {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        .pub-card-title {
+            font-size: 0.94rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .pub-card-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .pub-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pdf-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .pdf-link:hover {
+            color: var(--accent);
+        }
+
+        .pdf-link i {
+            font-size: 0.7rem;
+        }
+
+        /* Featured wide card */
+        .pub-card-wide {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            margin-bottom: 20px;
+            transition: border-color 0.22s;
+            cursor: pointer;
+        }
+
+        .pub-card-wide:hover {
+            border-color: rgba(240, 128, 48, 0.4);
+        }
+
+        .pub-card-wide .pub-card-img {
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .pub-card-wide .pub-card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .pub-card-wide .pub-card-title {
+            font-size: 1.2rem;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(240, 128, 48, 0.15);
+            border: 1px solid rgba(240, 128, 48, 0.3);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .wide-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .pub-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pub-card-wide {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero-inner {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pub-layout {
+                padding: 20px;
+            }
+
+            .filter-bar-inner {
+                padding: 0 20px;
+            }
+
+            .page-hero-inner {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-tl"></div>
+
+    <!-- ═══ NAVBAR ════════════════════════════════════════ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+            MedScholars BD
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html" class="active">Publications</a></li>
+            <li><a href="submit.html">Submit Paper</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="nav-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search…" id="navSearchInput" />
+            </div>
+            <a href="#" class="btn btn-primary" style="padding:7px 18px;font-size:0.8rem;">Login</a>
+        </div>
+    </nav>
+
+    <!-- ═══ PAGE HERO ══════════════════════════════════════ -->
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <div>
+                <h1>Publications <span>Library</span></h1>
+                <p>Access peer-reviewed medical research, clinical trials, and epidemiological studies from scholars
+                    across Bangladesh.</p>
+            </div>
+            <div class="page-hero-actions">
+                <button class="btn btn-secondary"><i class="fas fa-bookmark"></i> My Saved</button>
+                <a href="research.html" class="btn btn-primary"><i class="fas fa-file-medical"></i> Submit Research</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FILTER BAR ════════════════════════════════════ -->
+    <div class="filter-bar">
+        <div class="filter-bar-inner filter-group">
+            <button class="filter-pill active"><i class="fas fa-border-all"></i> All Publications</button>
+            <button class="filter-pill"><i class="fas fa-flask"></i> Clinical Trials</button>
+            <button class="filter-pill"><i class="fas fa-heartbeat"></i> Public Health</button>
+            <button class="filter-pill"><i class="fas fa-dna"></i> Epidemiology</button>
+            <div class="filter-separator"></div>
+            <!-- Year selector -->
+            <div class="filter-select">
+                <i class="fas fa-calendar-alt" style="color:var(--text-dim);font-size:.75rem;"></i>
+                <select>
+                    <option>2026</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                    <option>2023</option>
+                </select>
+            </div>
+            <!-- Sort -->
+            <div class="filter-select">
+                <i class="fas fa-sort" style="color:var(--text-dim);font-size:.75rem;"></i>
+                <select>
+                    <option>Sort by: Newest</option>
+                    <option>Sort by: Most Cited</option>
+                    <option>Sort by: Most Downloaded</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ BODY ════════════════════════════════════════ -->
+    <div class="pub-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-block">
+                <h3><i class="fas fa-university"></i> Institutions</h3>
+                <div class="sidebar-item">
+                    <label class="sidebar-checkbox">
+                        <input type="checkbox" checked />BSM/MU
+                    </label>
+                    <span class="sidebar-count">124</span>
+                </div>
+                <div class="sidebar-item">
+                    <label class="sidebar-checkbox">
+                        <input type="checkbox" />ICDDR,B
+                    </label>
+                    <span class="sidebar-count">88</span>
+                </div>
+                <div class="sidebar-item">
+                    <label class="sidebar-checkbox">
+                        <input type="checkbox" />Dhaka Medical
+                    </label>
+                    <span class="sidebar-count">32</span>
+                </div>
+            </div>
+
+            <div class="sidebar-block">
+                <h3><i class="fas fa-tag"></i> Topics</h3>
+                <div>
+                    <span class="topic-chip active">Dengue</span>
+                    <span class="topic-chip active">Cardiology</span>
+                    <span class="topic-chip">Pediatrics</span>
+                    <span class="topic-chip">Disease</span>
+                    <span class="topic-chip">Nutrition</span>
+                    <span class="topic-chip">Genetics</span>
+                    <span class="topic-chip">AI</span>
+                </div>
+            </div>
+
+            <div class="subscribe-box">
+                <h3>Subscribe to Alerts</h3>
+                <p>Get the latest research delivered to your inbox weekly.</p>
+                <form class="subscribe-form">
+                    <input class="input-field" type="email" placeholder="Email address" />
+                    <button type="submit" class="btn btn-primary"
+                        style="padding:9px 16px;font-size:0.82rem;justify-content:center;">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- ARTICLES -->
+        <main class="articles-main">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div style="font-size:0.82rem;color:var(--text-muted);">Showing <strong
+                        style="color:var(--white);">142</strong> results for <em style="color:var(--accent);">All
+                        Publications</em></div>
+                <div class="view-toggle">
+                    <button class="view-btn active" title="Grid view"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" title="List view"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+
+            <!-- Grid of 4 cards -->
+            <div class="articles-grid">
+
+                <a href="article.html" class="pub-card fade-in" style="text-decoration:none;color:inherit;">
+                    <div class="pub-card-img">
+                        <img src="assets/images/dengue.png" alt="Dengue serotypes study" />
+                        <span class="tag tag-epidemiology"
+                            style="position:absolute;top:12px;left:12px;">Epidemiology</span>
+                    </div>
+                    <div class="pub-card-body">
+                        <div class="pub-card-meta">
+                            <span class="pub-date"><i class="fas fa-calendar"></i> Feb 12, 2026</span>
+                            <span class="pub-dot" style="color:var(--text-dim);">·</span>
+                            <span class="pub-journal">Journal of Tropical Medicine</span>
+                        </div>
+                        <div class="pub-card-title">Prevalence of Dengue Serotypes in Dhaka: A Longitudinal Study</div>
+                        <div class="pub-card-desc">An extensive analysis of serotype distribution across major Dhaka
+                            hospitals, identifying a shift towards DENV-3 dominance in the post-monsoon season of 2025.
+                        </div>
+                        <div class="pub-card-footer">
+                            <div class="author-row">
+                                <div class="avatar"
+                                    style="background:var(--orange);width:26px;height:26px;font-size:.6rem;">AR</div>
+                                <span style="font-size:.75rem;color:var(--text-muted);">Dr. A. Rahman</span>
+                            </div>
+                            <span class="pdf-link"><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="article.html" class="pub-card fade-in"
+                    style="text-decoration:none;color:inherit;transition-delay:.08s">
+                    <div class="pub-card-img">
+                        <img src="assets/images/telemedicine.png" alt="Hypertension telemedicine" />
+                        <span class="tag tag-cardiology" style="position:absolute;top:12px;left:12px;">Cardiology</span>
+                    </div>
+                    <div class="pub-card-body">
+                        <div class="pub-card-meta">
+                            <span class="pub-date"><i class="fas fa-calendar"></i> Jan 28, 2026</span>
+                            <span class="pub-dot" style="color:var(--text-dim);">·</span>
+                            <span class="pub-journal">Bangladeshi Medical Journal</span>
+                        </div>
+                        <div class="pub-card-title">Hypertension Management in Rural Communities: A Telemedicine
+                            Approach</div>
+                        <div class="pub-card-desc">Evaluating the efficacy of mobile-based intervention strategies for
+                            hypertension control in three upazilas of Chittagong district.</div>
+                        <div class="pub-card-footer">
+                            <div class="author-row">
+                                <div class="avatar" style="width:26px;height:26px;font-size:.6rem;">SK</div>
+                                <span style="font-size:.75rem;color:var(--text-muted);">Prof. S. Khan</span>
+                            </div>
+                            <span class="pdf-link"><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="article.html" class="pub-card fade-in"
+                    style="text-decoration:none;color:inherit;transition-delay:.16s">
+                    <div class="pub-card-img">
+                        <img src="assets/images/cardio.png" alt="Genetics thalassemia" />
+                        <span class="tag tag-genetics" style="position:absolute;top:12px;left:12px;">Genetics</span>
+                    </div>
+                    <div class="pub-card-body">
+                        <div class="pub-card-meta">
+                            <span class="pub-date"><i class="fas fa-calendar"></i> Jan 15, 2026</span>
+                            <span class="pub-dot" style="color:var(--text-dim);">·</span>
+                            <span class="pub-journal">Nature Genetics (Local Edition)</span>
+                        </div>
+                        <div class="pub-card-title">Genetic Markers for Beta-Thalassemia in South Asian Populations
+                        </div>
+                        <div class="pub-card-desc">Identifying novel gene mutations associated with severe phenotypes of
+                            Thalassemia among patients visiting BSMMU genetics department.</div>
+                        <div class="pub-card-footer">
+                            <div class="author-row">
+                                <div class="avatar purple" style="width:26px;height:26px;font-size:.6rem;">SM</div>
+                                <span style="font-size:.75rem;color:var(--text-muted);">Dr. S. Memed +3</span>
+                            </div>
+                            <span class="pdf-link"><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="article.html" class="pub-card fade-in"
+                    style="text-decoration:none;color:inherit;transition-delay:.24s">
+                    <div class="pub-card-img">
+                        <img src="assets/images/rural.png" alt="Nutrition children" />
+                        <span class="tag tag-nutrition" style="position:absolute;top:12px;left:12px;">Nutrition</span>
+                    </div>
+                    <div class="pub-card-body">
+                        <div class="pub-card-meta">
+                            <span class="pub-date"><i class="fas fa-calendar"></i> Dec 22, 2025</span>
+                            <span class="pub-dot" style="color:var(--text-dim);">·</span>
+                            <span class="pub-journal">Public Health Nutrition</span>
+                        </div>
+                        <div class="pub-card-title">Micronutrient Deficiencies in School-Age Children: A Post-Pandemic
+                            Survey</div>
+                        <div class="pub-card-desc">Assessing the impact of economic inflation on dietary diversity and
+                            nutritional status among primary school children in Sylhet.</div>
+                        <div class="pub-card-footer">
+                            <div class="author-row">
+                                <div class="avatar green" style="width:26px;height:26px;font-size:.6rem;">TI</div>
+                                <span style="font-size:.75rem;color:var(--text-muted);">Dr. T. Islam</span>
+                            </div>
+                            <span class="pdf-link"><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div><!-- /articles-grid -->
+
+            <!-- Featured wide card -->
+            <a href="article.html" class="pub-card-wide fade-in" style="text-decoration:none;color:inherit;">
+                <div class="pub-card-img">
+                    <img src="assets/images/hero_lab.png" alt="Biotech Bangladesh" />
+                </div>
+                <div class="pub-card-body">
+                    <div class="featured-badge"><i class="fas fa-star"></i> Featured</div>
+                    <div class="pub-card-meta">
+                        <span class="pub-date"><i class="fas fa-calendar"></i> Nov 10, 2021</span>
+                        <span class="pub-dot" style="color:var(--text-dim);">·</span>
+                        <span class="pub-journal">The Lancet (Regional Health)</span>
+                    </div>
+                    <div class="pub-card-title">The Future of Biotech in Bangladesh: 2030 Roadmap</div>
+                    <div class="pub-card-desc">A comprehensive policy paper outlining the strategic infrastructure
+                        investments required to establish Bangladesh as a regional hub for biopharmaceutical innovation.
+                    </div>
+                    <div class="wide-actions">
+                        <button class="btn btn-primary" style="font-size:.82rem;padding:9px 18px;"><i
+                                class="fas fa-download"></i> Download Full Paper</button>
+                        <button class="btn btn-secondary" style="font-size:.82rem;padding:9px 18px;">Read
+                            Abstract</button>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pagination -->
+            <div class="pagination fade-in">
+                <button class="pg-btn arrow" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pg-btn active">1</button>
+                <button class="pg-btn">2</button>
+                <button class="pg-btn">3</button>
+                <button class="pg-btn dots">…</button>
+                <button class="pg-btn">12</button>
+                <button class="pg-btn arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+        </main>
+    </div><!-- /pub-layout -->
+
+    <!-- ═══ FOOTER ════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">
+                    <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+                    MedScholars BD
+                </a>
+                <p>Advancing health knowledge through collaboration and research excellence in Bangladesh.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="research.html">Browse Research</a></li>
+                    <li><a href="publications.html">Submit Manuscript</a></li>
+                    <li><a href="#">Grants &amp; Funding</a></li>
+                    <li><a href="#">Scholar Profiles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Institutions</a></li>
+                    <li><a href="#">Find a Partner</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Editorial Guidelines</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 MedScholars Bangladesh.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Pagination click
+        document.querySelectorAll('.pg-btn:not(.arrow):not(.dots)').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

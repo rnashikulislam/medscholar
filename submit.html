@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Your Research – MedScholars BD</title>
+    <meta name="description"
+        content="Submit your medical research manuscript to MedScholars BD for peer review and publication." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        /* ── PAGE ──────────────────────────────────── */
+        .submit-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 48px 40px 70px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 36px;
+            align-items: start;
+        }
+
+        /* ── FORM SIDE ─────────────────────────────── */
+        .form-header {
+            margin-bottom: 32px;
+        }
+
+        .form-header h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .form-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 540px;
+        }
+
+        /* Field groups */
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .field-full {
+            margin-bottom: 18px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 7px;
+        }
+
+        .field-label .required {
+            color: var(--accent);
+            margin-left: 2px;
+        }
+
+        /* Inputs */
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 203, 184, 0.1);
+        }
+
+        select.form-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%234a7a71' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        select.form-input option {
+            background: var(--dark-card);
+        }
+
+        /* Rich text abstract */
+        .abstract-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .abstract-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 203, 184, 0.1);
+        }
+
+        .rte-toolbar {
+            display: flex;
+            gap: 2px;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .rte-btn {
+            width: 30px;
+            height: 28px;
+            background: none;
+            border: none;
+            border-radius: 5px;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: all 0.15s;
+        }
+
+        .rte-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .rte-btn.active {
+            background: var(--teal-glow);
+            color: var(--accent);
+        }
+
+        .rte-divider {
+            width: 1px;
+            background: var(--border);
+            margin: 4px 4px;
+            align-self: stretch;
+        }
+
+        .rte-area {
+            min-height: 150px;
+            padding: 14px 16px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            outline: none;
+            background: none;
+        }
+
+        .rte-area:empty::before {
+            content: attr(data-placeholder);
+            color: var(--text-dim);
+        }
+
+        .rte-footer {
+            padding: 6px 14px;
+            border-top: 1px solid var(--border-soft);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* File upload */
+        .upload-zone {
+            border: 2px dashed rgba(45, 203, 184, 0.2);
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.22s;
+            background: rgba(45, 203, 184, 0.02);
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--accent);
+            background: rgba(45, 203, 184, 0.06);
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .upload-zone h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .upload-zone p {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+        }
+
+        .upload-zone input[type="file"] {
+            display: none;
+        }
+
+        .upload-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+
+        .upload-hint span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* File preview row */
+        .file-preview {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .file-preview.show {
+            display: flex;
+        }
+
+        .file-preview-icon {
+            font-size: 1.3rem;
+            color: var(--red);
+        }
+
+        .file-preview-name {
+            flex: 1;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .file-preview-size {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+        .file-remove {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .file-remove:hover {
+            color: var(--red);
+        }
+
+        /* Agree checkbox */
+        .agree-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 24px 0;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .agree-row input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .agree-row a {
+            color: var(--accent);
+        }
+
+        /* Submit button */
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--orange), #e86430);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 32px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 20px rgba(240, 128, 48, 0.35);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(240, 128, 48, 0.45);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ── SIDEBAR ───────────────────────────────── */
+        .submit-sidebar {
+            position: sticky;
+            top: 78px;
+        }
+
+        .guidelines-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .guidelines-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .guidelines-title i {
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+
+        .guideline-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .guideline-item:last-child {
+            border-bottom: none;
+        }
+
+        .guideline-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .guideline-icon.check {
+            background: rgba(63, 200, 122, 0.15);
+            color: var(--green);
+        }
+
+        .guideline-icon.help {
+            background: rgba(79, 142, 232, 0.15);
+            color: var(--blue);
+        }
+
+        .guideline-text strong {
+            font-size: 0.82rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .guideline-text span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .conference-card {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .conference-card:hover {
+            border-color: rgba(45, 203, 184, 0.3);
+        }
+
+        .conf-img {
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .conf-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .conf-body {
+            background: var(--dark-card);
+            padding: 14px 16px;
+        }
+
+        .conf-body h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .conf-body p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Progress indicator (bottom of sidebar) */
+        .form-progress {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar-track {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .submit-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-sidebar {
+                position: static;
+            }
+
+            .field-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .submit-wrap {
+                padding: 30px 20px 50px;
+            }
+
+            .form-header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+
+    <!-- ═══ NAVBAR ════════════════════════════════════════ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+            MedScholars BD
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Journals</a></li>
+            <li><a href="#">Conferences</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="submit.html" class="active">Submit Research</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="nav-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search journals…" />
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ FORM BODY ══════════════════════════════════════ -->
+    <div class="submit-wrap">
+
+        <!-- LEFT: FORM -->
+        <div>
+            <div class="form-header">
+                <h1>Share Your Research</h1>
+                <p>Contribute to the medical community in Bangladesh by publishing your findings. Please fill out the
+                    form below to submit your manuscript for review.</p>
+            </div>
+
+            <form id="submitForm" novalidate>
+
+                <!-- Name + Email -->
+                <div class="field-row">
+                    <div>
+                        <label class="field-label" for="fullName">Full Name <span class="required">*</span></label>
+                        <input class="form-input" type="text" id="fullName" name="fullName"
+                            placeholder="Dr. Joynul Abedin" required />
+                    </div>
+                    <div>
+                        <label class="field-label" for="email">Email Address <span class="required">*</span></label>
+                        <input class="form-input" type="email" id="email" name="email" placeholder="doctor@example.com"
+                            required />
+                    </div>
+                </div>
+
+                <!-- Research Title -->
+                <div class="field-full">
+                    <label class="field-label" for="researchTitle">Research Title <span
+                            class="required">*</span></label>
+                    <input class="form-input" type="text" id="researchTitle" name="researchTitle"
+                        placeholder="Enter the full title of your manuscript" required />
+                </div>
+
+                <!-- Category + Type -->
+                <div class="field-row">
+                    <div>
+                        <label class="field-label" for="category">Category <span class="required">*</span></label>
+                        <select class="form-input" id="category" name="category" required>
+                            <option value="" disabled selected>Select a medical field</option>
+                            <option>Cardiology</option>
+                            <option>Epidemiology</option>
+                            <option>Oncology</option>
+                            <option>Pediatrics</option>
+                            <option>Public Health</option>
+                            <option>Microbiology</option>
+                            <option>Radiology</option>
+                            <option>Surgery</option>
+                            <option>Psychiatry</option>
+                            <option>Endocrinology</option>
+                            <option>Neurology</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="field-label" for="manuscriptType">Manuscript Type <span
+                                class="required">*</span></label>
+                        <select class="form-input" id="manuscriptType" name="manuscriptType" required>
+                            <option value="" disabled selected>Select type</option>
+                            <option>Original Research</option>
+                            <option>Review Article</option>
+                            <option>Case Report</option>
+                            <option>Short Communication</option>
+                            <option>Clinical Trial</option>
+                            <option>Meta-Analysis</option>
+                            <option>Policy Brief</option>
+                            <option>Letter to Editor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Abstract -->
+                <div class="field-full">
+                    <label class="field-label">Abstract <span class="required">*</span></label>
+                    <div class="abstract-box">
+                        <div class="rte-toolbar">
+                            <button type="button" class="rte-btn" id="rteB" title="Bold"><strong>B</strong></button>
+                            <button type="button" class="rte-btn" id="rteI" title="Italic"><em>I</em></button>
+                            <button type="button" class="rte-btn" id="rteU" title="Underline"><u>U</u></button>
+                            <div class="rte-divider"></div>
+                            <button type="button" class="rte-btn" id="rteBullet" title="Bullet list"><i
+                                    class="fas fa-list-ul"></i></button>
+                            <button type="button" class="rte-btn" id="rteOrdered" title="Numbered list"><i
+                                    class="fas fa-list-ol"></i></button>
+                        </div>
+                        <div class="rte-area" id="abstractArea" contenteditable="true"
+                            data-placeholder="Paste your abstract here (max 300 words)…" role="textbox"
+                            aria-multiline="true"></div>
+                        <div class="rte-footer">
+                            <span id="wordCount">0 / 300 words</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File upload -->
+                <div class="field-full">
+                    <label class="field-label">Upload Manuscript <span class="required">*</span></label>
+                    <div class="upload-zone" id="uploadZone">
+                        <input type="file" id="fileInput" accept=".pdf,.docx,.doc" />
+                        <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <h4>Click to upload or drag and drop</h4>
+                        <p>PDF, DOCX or DOC (MAX. 10MB)</p>
+                        <div class="upload-hint">
+                            <span><i class="fas fa-file-pdf" style="color:var(--red);"></i> PDF</span>
+                            <span><i class="fas fa-file-word" style="color:var(--blue);"></i> DOCX</span>
+                            <span><i class="fas fa-file-alt" style="color:var(--accent);"></i> DOC</span>
+                        </div>
+                    </div>
+                    <div class="file-preview" id="filePreview">
+                        <i class="far fa-file-pdf file-preview-icon"></i>
+                        <span class="file-preview-name" id="fileName">—</span>
+                        <span class="file-preview-size" id="fileSize"></span>
+                        <button type="button" class="file-remove" id="fileRemove" title="Remove file"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <!-- Agree -->
+                <div class="agree-row">
+                    <input type="checkbox" id="agreeCheck" />
+                    <label for="agreeCheck">
+                        I confirm that this work is original and has not been published elsewhere. I agree to the <a
+                            href="#">Terms of Submission</a>.
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="submit-btn" id="mainSubmitBtn" disabled>
+                    Submit Manuscript <i class="fas fa-arrow-right"></i>
+                </button>
+
+            </form>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="submit-sidebar">
+
+            <div class="guidelines-card">
+                <div class="guidelines-title">
+                    <i class="fas fa-clipboard-list"></i> Submission Guidelines
+                </div>
+
+                <div class="guideline-item">
+                    <div class="guideline-icon check"><i class="fas fa-check"></i></div>
+                    <div class="guideline-text">
+                        <strong>Format Requirements</strong>
+                        <span>Ensure your document is in PDF or Word format with standard margins.</span>
+                    </div>
+                </div>
+
+                <div class="guideline-item">
+                    <div class="guideline-icon check"><i class="fas fa-check"></i></div>
+                    <div class="guideline-text">
+                        <strong>Citation Style</strong>
+                        <span>Use Vancouver style for all references and citations.</span>
+                    </div>
+                </div>
+
+                <div class="guideline-item">
+                    <div class="guideline-icon check"><i class="fas fa-check"></i></div>
+                    <div class="guideline-text">
+                        <strong>Word Count</strong>
+                        <span>Abstracts should be under 300 words. Full text max 5000 words.</span>
+                    </div>
+                </div>
+
+                <div class="guideline-item">
+                    <div class="guideline-icon check"><i class="fas fa-check"></i></div>
+                    <div class="guideline-text">
+                        <strong>Ethical Approval</strong>
+                        <span>Include IRB approval number for studies involving human subjects.</span>
+                    </div>
+                </div>
+
+                <div class="guideline-item" style="border-bottom:none;">
+                    <div class="guideline-icon help"><i class="fas fa-question"></i></div>
+                    <div class="guideline-text">
+                        <strong>Need Assistance?</strong>
+                        <span>Contact our editorial team at <a href="mailto:support@medscholars.bd"
+                                style="color:var(--accent);">support@medscholars.bd</a> for any submission
+                            queries.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference card -->
+            <div class="conference-card">
+                <div class="conf-img">
+                    <img src="assets/images/hero_lab.png" alt="Annual Conference 2024" />
+                </div>
+                <div class="conf-body">
+                    <h4>Annual Conference 2024</h4>
+                    <p>Join the biggest medical gathering in Dhaka.</p>
+                </div>
+            </div>
+
+            <!-- Progress indicator -->
+            <div class="form-progress">
+                <div class="progress-label">
+                    <span>Form Completion</span>
+                    <span id="progressPct">0%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- ═══ FOOTER ════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">
+                    <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+                    MedScholars BD
+                </a>
+                <p>Advancing health knowledge through collaboration and research excellence in Bangladesh.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="research.html">Browse Research</a></li>
+                    <li><a href="submit.html">Submit Manuscript</a></li>
+                    <li><a href="#">Grants &amp; Funding</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Institutions</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 MedScholars Bangladesh. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        /* ── Rich Text Editor ──────────────────────── */
+        const area = document.getElementById('abstractArea');
+        const wordCountEl = document.getElementById('wordCount');
+
+        ['rteB', 'rteI', 'rteU'].forEach((id, i) => {
+            const cmds = ['bold', 'italic', 'underline'];
+            document.getElementById(id).addEventListener('mousedown', e => {
+                e.preventDefault();
+                document.execCommand(cmds[i], false, null);
+                area.focus();
+            });
+        });
+
+        document.getElementById('rteBullet').addEventListener('mousedown', e => {
+            e.preventDefault();
+            document.execCommand('insertUnorderedList', false, null);
+            area.focus();
+        });
+
+        document.getElementById('rteOrdered').addEventListener('mousedown', e => {
+            e.preventDefault();
+            document.execCommand('insertOrderedList', false, null);
+            area.focus();
+        });
+
+        area.addEventListener('input', () => {
+            const text = area.innerText || '';
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            wordCountEl.textContent = `${words} / 300 words`;
+            wordCountEl.style.color = words > 300 ? 'var(--red)' : 'var(--text-dim)';
+            updateProgress();
+        });
+
+        /* ── File Upload ───────────────────────────── */
+        const zone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const preview = document.getElementById('filePreview');
+        const fileNameEl = document.getElementById('fileName');
+        const fileSizeEl = document.getElementById('fileSize');
+
+        zone.addEventListener('click', () => fileInput.click());
+
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
+            zone.classList.add('dragover');
+        });
+
+        zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) showFile(file);
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files[0]) showFile(fileInput.files[0]);
+        });
+
+        function showFile(file) {
+            const maxMB = 10;
+            if (file.size > maxMB * 1024 * 1024) {
+                alert('File size exceeds 10MB. Please upload a smaller file.');
+                return;
+            }
+            fileNameEl.textContent = file.name;
+            fileSizeEl.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+            preview.classList.add('show');
+            zone.style.display = 'none';
+            updateProgress();
+        }
+
+        document.getElementById('fileRemove').addEventListener('click', () => {
+            preview.classList.remove('show');
+            zone.style.display = '';
+            fileInput.value = '';
+            updateProgress();
+        });
+
+        /* ── Form Validation & Progress ─────────────── */
+        const agreeCheck = document.getElementById('agreeCheck');
+        const submitBtn = document.getElementById('mainSubmitBtn');
+        const fields = ['fullName', 'email', 'researchTitle', 'category', 'manuscriptType'];
+
+        function updateProgress() {
+            let filled = 0;
+            const total = fields.length + 3; // + abstract, file, agree
+            fields.forEach(id => { if (document.getElementById(id).value) filled++; });
+            if ((area.innerText || '').trim()) filled++;
+            if (preview.classList.contains('show')) filled++;
+            if (agreeCheck.checked) filled++;
+
+            const pct = Math.round((filled / total) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressPct').textContent = pct + '%';
+
+            // Enable submit only when agree+required filled
+            const ready = agreeCheck.checked &&
+                fields.every(id => document.getElementById(id).value) &&
+                (area.innerText || '').trim().length > 10;
+            submitBtn.disabled = !ready;
+        }
+
+        fields.forEach(id => document.getElementById(id).addEventListener('input', updateProgress));
+        agreeCheck.addEventListener('change', updateProgress);
+
+        /* ── Form Submit → navigate to success page ── */
+        document.getElementById('submitForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const title = document.getElementById('researchTitle').value || 'Your Manuscript';
+            sessionStorage.setItem('submittedTitle', title);
+            window.location.href = 'submit-success.html';
+        });
+    </script>
+</body>
+
+</html>

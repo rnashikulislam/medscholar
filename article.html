@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prevalence of Antibiotic Resistance in Urban Clinics of Dhaka – MedScholars BD</title>
+    <meta name="description"
+        content="A peer-reviewed 2023 study investigating antibiotic resistance patterns in urban clinics across Dhaka, Bangladesh." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        /* ── ARTICLE LAYOUT ────────────────────────── */
+        .article-wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 40px 40px 60px;
+            display: grid;
+            grid-template-columns: 220px 1fr 240px;
+            gap: 36px;
+            align-items: start;
+        }
+
+        /* LEFT SIDEBAR – table of contents */
+        .toc-sidebar {
+            position: sticky;
+            top: 78px;
+        }
+
+        .toc-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc-item a {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 6px 10px;
+            border-left: 2px solid transparent;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.2s;
+        }
+
+        .toc-item a:hover,
+        .toc-item.active a {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background: var(--teal-glow);
+        }
+
+        /* Action pills on TOC */
+        .art-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .art-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .art-action-btn:hover {
+            color: var(--white);
+            border-color: var(--accent);
+            background: var(--teal-glow);
+        }
+
+        .art-action-btn i {
+            width: 14px;
+            color: var(--accent);
+        }
+
+
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: var(--text-dim);
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        .breadcrumb i {
+            font-size: 0.6rem;
+        }
+
+        /* Tags row */
+        .art-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        /* Title */
+        .art-title {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        /* Author block */
+        .author-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .author-avatar-lg {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--teal);
+            display: grid;
+            place-items: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-info strong {
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .author-info span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .author-meta-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 10px;
+        }
+
+        .meta-pill i {
+            color: var(--accent);
+            font-size: 0.65rem;
+        }
+
+        /* Hero image */
+        .art-hero-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 32px;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            border-left: 3px solid var(--accent);
+            background: rgba(45, 203, 184, 0.06);
+            border-radius: 0 10px 10px 0;
+            padding: 18px 22px;
+            margin: 28px 0;
+            font-family: 'Lora', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* Body text */
+        .art-body h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 32px 0 12px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-soft);
+        }
+
+        .art-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        /* Chart / figure */
+        .figure-box {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .figure-caption {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Simple bar chart via CSS */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-label {
+            width: 100px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--teal), var(--teal-bright));
+            animation: barGrow 1s ease-out forwards;
+            transform-origin: left;
+        }
+
+        @keyframes barGrow {
+            from {
+                transform: scaleX(0);
+            }
+
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .bar-val {
+            width: 38px;
+            font-size: 0.78rem;
+            color: var(--text-main);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* Methodology checklist */
+        .method-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .method-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--teal-glow);
+            border: 1px solid rgba(45, 203, 184, 0.2);
+            display: grid;
+            place-items: center;
+            color: var(--accent);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .method-text strong {
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .method-text span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Key findings highlights */
+        .findings-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .finding-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .finding-val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .finding-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Related articles */
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .related-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            border-color: rgba(45, 203, 184, 0.3);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .related-body {
+            padding: 12px 14px;
+        }
+
+        .related-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: 4px;
+        }
+
+        .related-meta {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        /* RIGHT SIDEBAR */
+        .right-sidebar {
+            position: sticky;
+            top: 78px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .rs-widget {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .rs-widget h3 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+
+        .rs-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .rs-stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+        }
+
+        .rs-stat-label {
+            color: var(--text-muted);
+        }
+
+        .rs-stat-val {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .footnote-list {
+            list-style: none;
+            counter-reset: fn;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footnote-list li {
+            counter-increment: fn;
+            display: flex;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .footnote-list li::before {
+            content: counter(fn);
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+            min-width: 14px;
+        }
+
+        /* Footer subscribe widget */
+        .rs-subscribe {
+            background: linear-gradient(135deg, rgba(26, 122, 110, 0.2), rgba(45, 203, 184, 0.08));
+            border: 1px solid rgba(45, 203, 184, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .article-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .toc-sidebar,
+            .right-sidebar {
+                position: static;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .findings-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .article-wrap {
+                padding: 24px 20px 40px;
+            }
+
+            .bar-label {
+                width: 75px;
+                font-size: .72rem;
+            }
+
+            .findings-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-tl"></div>
+
+    <!-- ═══ NAVBAR ════════════════════════════════════════ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+            MedScholars BD
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="submit.html">Submit Research</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="nav-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search…" />
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ ARTICLE ════════════════════════════════════════ -->
+    <div class="article-wrap">
+
+        <!-- LEFT: TOC -->
+        <aside class="toc-sidebar fade-in">
+            <div class="toc-label">Contents</div>
+            <ul class="toc-list">
+                <li class="toc-item active"><a href="#intro">Introduction</a></li>
+                <li class="toc-item"><a href="#methodology">Methodology</a></li>
+                <li class="toc-item"><a href="#results">Results Analysis</a></li>
+                <li class="toc-item"><a href="#discussion">Discussion</a></li>
+                <li class="toc-item"><a href="#conclusion">Conclusion</a></li>
+                <li class="toc-item"><a href="#citations">Citations</a></li>
+            </ul>
+
+            <div class="art-actions">
+                <button class="art-action-btn"><i class="fas fa-download"></i> Download PDF</button>
+                <button class="art-action-btn"><i class="fas fa-share-alt"></i> Share Article</button>
+                <button class="art-action-btn bookmark-btn"><i class="fas fa-bookmark"></i> Save to Library</button>
+                <button class="art-action-btn"><i class="fas fa-quote-right"></i> Cite This</button>
+            </div>
+        </aside>
+
+        <!-- CENTER: Article body -->
+        <article class="article-content">
+
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="research.html">Research</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Antibiotic Resistance Study</span>
+            </nav>
+
+            <!-- Tags -->
+            <div class="art-tags">
+                <span class="tag tag-epidemiology">Epidemiology</span>
+                <span class="tag tag-public-health">Public Health</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="art-title">Prevalence of Antibiotic Resistance in Urban Clinics of Dhaka: A 2023 Study</h1>
+
+            <!-- Author row -->
+            <div class="author-block">
+                <div class="author-avatar-lg">SR</div>
+                <div class="author-info">
+                    <strong>Dr. Sarah Rahman</strong>
+                    <span>Dept. of Microbiology, Dhaka Medical College · Corresponding author</span>
+                </div>
+                <div class="author-meta-pills">
+                    <span class="meta-pill"><i class="fas fa-calendar-alt"></i> Oct 02, 2024</span>
+                    <span class="meta-pill"><i class="fas fa-clock"></i> 14 min read</span>
+                    <span class="meta-pill"><i class="fas fa-eye"></i> 3.2k views</span>
+                    <span class="meta-pill"><i class="fas fa-share-alt"></i> Share</span>
+                    <span class="meta-pill"><i class="fab fa-twitter"></i></span>
+                    <span class="meta-pill"><i class="fab fa-linkedin-in"></i></span>
+                </div>
+            </div>
+
+            <!-- Hero image -->
+            <img src="assets/images/dengue.png" class="art-hero-img" alt="Antibiotic resistance microscopy" />
+
+            <!-- Pull quote -->
+            <div class="pull-quote">
+                "This study investigates the rising trend of antibiotic resistance among patients visiting urban clinics
+                in Dhaka, by findings significant disparities between specific resistance patterns and resistance
+                between specific antibiotic classes, highlighting an urgent need for revised antibiotic policy regimens
+                in urban clinic areas."
+            </div>
+
+            <!-- Article body -->
+            <div class="art-body">
+
+                <h2 id="intro">Introduction</h2>
+                <p>Antibiotic Resistance (ABR) poses one of the most significant threats to global health, food
+                    security, and healthcare sustainability today. In Bangladesh, growing population in densely packed
+                    urban centers like Dhaka, the disease and overuse of antibiotics are accelerating this crisis. This
+                    paper aims to describe the prevalence of antibiotic resistance (ABR) in outpatient settings, a
+                    sector often overlooked in favor of inpatient care in teaching hospitals.</p>
+                <p>The World Health Organisation (WHO) has classified ABR as a priority area for research. Multiple
+                    studies from neighboring nations across South Asia and South America, our attempt to construct a
+                    clearer picture of the current landscape.</p>
+
+                <h2 id="methodology">Methodology</h2>
+                <p>We conducted a cross-sectional study over a period of six months, from January to June 2023. A total
+                    of <strong>1,230 clinical samples</strong> were collected from outpatient and inpatient hospital
+                    records. Identification of bacterial strains was performed using standard microbiological
+                    techniques, and the Kirby-Bauer disk diffusion method was used to determine susceptibility patterns.
+                </p>
+
+                <div class="method-item">
+                    <div class="method-icon"><i class="fas fa-users"></i></div>
+                    <div class="method-text">
+                        <strong>Sample Size: 1,230 participants</strong>
+                        <span>Age range 18-65 years, across 3 upazilas. At least one documented antibiotic prescription
+                            required for inclusion.</span>
+                    </div>
+                </div>
+
+                <div class="method-item">
+                    <div class="method-icon"><i class="fas fa-vial"></i></div>
+                    <div class="method-text">
+                        <strong>Eligibility Criteria: Urban patients only</strong>
+                        <span>Being prescribed 18-65 years, at least one documented antibiotic prescription required.
+                            Patients with pre-existing immunodeficiency were excluded using a chi-square independence
+                            test.</span>
+                    </div>
+                </div>
+
+                <div class="method-item">
+                    <div class="method-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="method-text">
+                        <strong>Statistical Analysis: Chi-Square Test (p &lt; 0.05)</strong>
+                        <span>Significance tests were conducted using R version 4.2.1 with the tidyverse package
+                            ecosystem.</span>
+                    </div>
+                </div>
+
+                <h2 id="results">Results Analysis</h2>
+                <p>Of the 1,230 samples, 785 (63.8%) tested positive for at least one resistant antibiotic.
+                    ESBL-producing bacteria constituted 46% of the total, followed by S. aureus (22%), and Rifampicin
+                    (AFR). Alarmingly, 44% of all positive samples were co-resistant to two or more antibiotic classes,
+                    and 9% faced pan-resistance.</p>
+
+                <div class="findings-row">
+                    <div class="finding-card">
+                        <span class="finding-val" data-count="63" data-suffix="%">63%</span>
+                        <span class="finding-label">Samples showed at least one resistant strain</span>
+                    </div>
+                    <div class="finding-card">
+                        <span class="finding-val" data-count="44" data-suffix="%">44%</span>
+                        <span class="finding-label">Multi-drug resistant (co-resistant) cases</span>
+                    </div>
+                    <div class="finding-card">
+                        <span class="finding-val" data-count="90" data-suffix="%+">90%+</span>
+                        <span class="finding-label">Resistance rate for common penicillin antibiotics</span>
+                    </div>
+                </div>
+
+                <div class="figure-box">
+                    <div style="font-size:.82rem;font-weight:700;margin-bottom:14px;color:var(--white);">Figure 1 —
+                        Antibiotic Resistance Rates by Class</div>
+                    <div class="bar-chart">
+                        <div class="bar-row">
+                            <div class="bar-label">Penicillin</div>
+                            <div class="bar-track">
+                                <div class="bar-fill" style="width:92%;animation-delay:.1s;"></div>
+                            </div>
+                            <div class="bar-val">92%</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Amoxicillin</div>
+                            <div class="bar-track">
+                                <div class="bar-fill"
+                                    style="width:78%;animation-delay:.2s;background:linear-gradient(90deg,var(--blue),#6ab8f7);">
+                                </div>
+                            </div>
+                            <div class="bar-val">78%</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Tetracycline</div>
+                            <div class="bar-track">
+                                <div class="bar-fill"
+                                    style="width:64%;animation-delay:.3s;background:linear-gradient(90deg,var(--orange),#f8b96a);">
+                                </div>
+                            </div>
+                            <div class="bar-val">64%</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Ciprofloxacin</div>
+                            <div class="bar-track">
+                                <div class="bar-fill"
+                                    style="width:51%;animation-delay:.4s;background:linear-gradient(90deg,var(--purple),#d0a8f8);">
+                                </div>
+                            </div>
+                            <div class="bar-val">51%</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Carbapenem</div>
+                            <div class="bar-track">
+                                <div class="bar-fill"
+                                    style="width:18%;animation-delay:.5s;background:linear-gradient(90deg,var(--green),#7debb4);">
+                                </div>
+                            </div>
+                            <div class="bar-val">18%</div>
+                        </div>
+                    </div>
+                    <div class="figure-caption">Figure 1. Resistance rates (%) per antibiotic class across 1,230 samples
+                        from urban Dhaka clinics, 2023.</div>
+                </div>
+
+                <h2 id="discussion">Discussion</h2>
+                <p>The high prevalence of ESBL-producing organisms has significant antibiotic management implications.
+                    The pattern suggests that antibiotic resistance genes are circulating within the community, not just
+                    in hospitals. This emphasizes the need for stronger surveillance between hospital and
+                    community-acquired infections. The unrestricted over-the-counter availability of antibiotics in
+                    local pharmacies clearly contributes significantly to this trend.</p>
+
+                <h2 id="conclusion">Conclusion</h2>
+                <p>Our study recommends the critical need for mandatory surveillance legislation in healthcare settings
+                    urban to address ABR. Furthermore, community awareness solutions must be established in rural
+                    clinics to monitor resistance patterns effectively. Future research should check a direct focus on
+                    the genome-level characteristics of these resistant bacteria to track their transmission pathways.
+                </p>
+
+                <h2 id="citations">Cite this Article</h2>
+                <div class="figure-box" style="font-size:.8rem;color:var(--text-muted);line-height:1.8;">
+                    <p><strong>APA:</strong> Rahman, S., et al. (2024). Prevalence of Antibiotic Resistance in Urban
+                        Clinics of Dhaka: A 2023 Study. <em>MedScholars Bangladesh Journal</em>, 12(4), 112–128.</p>
+                </div>
+
+                <!-- Related Articles -->
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="article.html" class="related-card" style="text-decoration:none;color:inherit;">
+                        <img src="assets/images/rural.png" alt="rural antibiotic" />
+                        <div class="related-body">
+                            <div class="related-title">Best Approaches to Treating MRSA Infections in Rural Bangladesh
+                            </div>
+                            <div class="related-meta">Microbiology · 8 min read</div>
+                        </div>
+                    </a>
+                    <a href="article.html" class="related-card" style="text-decoration:none;color:inherit;">
+                        <img src="assets/images/telemedicine.png" alt="telemedicine" />
+                        <div class="related-body">
+                            <div class="related-title">Impact of Telemedicine in Rate of Bangladesh</div>
+                            <div class="related-meta">Public Health · 6 min read</div>
+                        </div>
+                    </a>
+                </div>
+
+            </div><!-- /art-body -->
+        </article>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="right-sidebar fade-in">
+
+            <!-- Article Stats -->
+            <div class="rs-widget">
+                <h3>Article Stats</h3>
+                <div class="rs-stat">
+                    <div class="rs-stat-row"><span class="rs-stat-label">Published</span><span class="rs-stat-val">Oct
+                            02, 2024</span></div>
+                    <div class="rs-stat-row"><span class="rs-stat-label">Read Time</span><span class="rs-stat-val">14
+                            min</span></div>
+                    <div class="rs-stat-row"><span class="rs-stat-label">Views</span><span
+                            class="rs-stat-val">3,214</span></div>
+                    <div class="rs-stat-row"><span class="rs-stat-label">Downloads</span><span
+                            class="rs-stat-val">892</span></div>
+                    <div class="rs-stat-row"><span class="rs-stat-label">Citations</span><span
+                            class="rs-stat-val">14</span></div>
+                </div>
+            </div>
+
+            <!-- Journal -->
+            <div class="rs-widget">
+                <h3>Journal</h3>
+                <div style="font-size:.82rem;color:var(--text-muted);line-height:1.7;">
+                    <strong style="color:var(--white);font-size:.88rem;">MedScholars Bangladesh</strong><br>
+                    Vol. 12, Issue 4, Pages 112–128<br>
+                    <span style="color:var(--accent);">ISSN: 2411-5820</span><br>
+                    Peer-reviewed · Open Access
+                </div>
+            </div>
+
+            <!-- Citations -->
+            <div class="rs-widget">
+                <h3>References</h3>
+                <ol class="footnote-list">
+                    <li>WHO (2022). Global Antimicrobial Resistance Report. Geneva.</li>
+                    <li>Laxminarayan R. et al. (2013). Antibiotic resistance—the need for global solutions.
+                        <em>Lancet</em>.
+                    </li>
+                    <li>Islam A.B.M.M.K. (2019). Regional ABR patterns in South Asia.</li>
+                    <li>Bangladesh DGDA Guidelines (2021). Antibiotic Prescription Policy.</li>
+                </ol>
+            </div>
+
+            <!-- Subscribe mini -->
+            <div class="rs-widget rs-subscribe">
+                <h3 style="color:var(--white);text-transform:none;letter-spacing:0;font-size:.9rem;">Get Weekly Digest
+                </h3>
+                <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">Top papers
+                    delivered every Friday.</p>
+                <form class="subscribe-form">
+                    <input class="input-field" type="email" placeholder="Your email" />
+                    <button type="submit" class="btn btn-primary"
+                        style="padding:9px;font-size:.78rem;justify-content:center;margin-top:6px;">Subscribe</button>
+                </form>
+            </div>
+
+        </aside>
+    </div><!-- /article-wrap -->
+
+    <!-- ═══ FOOTER ════════════════════════════════════════ -->
+    <footer class="site-footer" style="margin-top: 0;">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">
+                    <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+                    MedScholars BD
+                </a>
+                <p>Advancing health knowledge through collaboration and research excellence in Bangladesh.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="research.html">Browse Research</a></li>
+                    <li><a href="publications.html">Submit Manuscript</a></li>
+                    <li><a href="#">Grants &amp; Funding</a></li>
+                    <li><a href="#">Scholar Profiles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Institutions</a></li>
+                    <li><a href="#">Become a Reviewer</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Blog Updates</h4>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">Subscribe to our
+                    newsletter for updates.</p>
+                <form class="subscribe-form">
+                    <input class="input-field" type="email" placeholder="Your email" />
+                    <button type="submit" class="btn btn-primary"
+                        style="padding:9px 14px;font-size:.78rem;margin-top:6px;justify-content:center;">Subscribe to
+                        Newsletter</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 MedScholars Bangladesh. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // TOC active on scroll
+        const tocItems = document.querySelectorAll('.toc-item');
+        const sections = ['intro', 'methodology', 'results', 'discussion', 'conclusion', 'citations']
+            .map(id => document.getElementById(id)).filter(Boolean);
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 120) current = s.id;
+            });
+            tocItems.forEach(item => {
+                item.classList.toggle('active', item.querySelector('a').getAttribute('href') === '#' + current);
+            });
+        }, { passive: true });
+    </script>
+</body>
+
+</html>

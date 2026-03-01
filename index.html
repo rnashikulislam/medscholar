@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedScholars – Empowering Medical Scholars in Bangladesh</title>
+    <meta name="description"
+        content="Join Bangladesh's premier platform for medical research, cross-institutional collaboration, and academic excellence. Connect with over 1,200 active scholars today." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        body {
+            padding-top: 0;
+        }
+
+        /* ── HERO ──────────────────────────────────── */
+        .hero-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero-section h1 em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 420px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* Visual side */
+        .hero-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .hero-img-main {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            width: 260px;
+            height: 220px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .hero-img-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-img-secondary {
+            position: absolute;
+            bottom: 0;
+            right: 60px;
+            width: 200px;
+            height: 160px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-img-secondary img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-badge {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(13, 31, 30, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            animation: floatBadge 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatBadge {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-7px);
+            }
+        }
+
+        .badge-grant {
+            top: 0;
+            right: 10px;
+            animation-delay: 0s;
+        }
+
+        .badge-scholar {
+            bottom: 20px;
+            left: 0;
+            animation-delay: 1.2s;
+        }
+
+        .badge-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+        }
+
+        .badge-icon.green {
+            background: rgba(63, 200, 122, 0.2);
+            color: var(--green);
+        }
+
+        .badge-icon.teal {
+            background: rgba(45, 203, 184, 0.2);
+            color: var(--accent);
+        }
+
+        .badge-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .badge-sub {
+            font-size: 0.63rem;
+            color: var(--text-muted);
+        }
+
+        /* ── STATS BAR ─────────────────────────────── */
+        .stats-bar {
+            background: var(--dark-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 36px 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            padding: 0 20px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ── DISCOVERIES ───────────────────────────── */
+        .discoveries-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .disc-img {
+            height: 180px;
+        }
+
+        .disc-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(13, 31, 30, 0.85);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.63rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .disc-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+
+        .disc-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .disc-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .disc-date {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        /* ── PUBLICATIONS ROW ─────────────────────── */
+        .pubs-section {
+            background: var(--dark-card);
+        }
+
+        .pubs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .pub-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 15px;
+            background: var(--dark-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .pub-row:hover {
+            border-color: var(--accent);
+            background: rgba(45, 203, 184, 0.04);
+        }
+
+        .pub-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .pub-icon.red {
+            background: rgba(232, 79, 79, 0.12);
+            color: var(--red);
+        }
+
+        .pub-icon.blue {
+            background: rgba(79, 142, 232, 0.12);
+            color: var(--blue);
+        }
+
+        .pub-icon.green {
+            background: rgba(63, 200, 122, 0.12);
+            color: var(--green);
+        }
+
+        .pub-icon.orange {
+            background: rgba(240, 128, 48, 0.12);
+            color: var(--orange);
+        }
+
+        .pub-icon.teal {
+            background: rgba(45, 203, 184, 0.12);
+            color: var(--accent);
+        }
+
+        .pub-icon.purple {
+            background: rgba(160, 110, 232, 0.12);
+            color: var(--purple);
+        }
+
+        .pub-title-sm {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .pub-meta-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .pub-field {
+            font-size: 0.67rem;
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        .pub-dot {
+            color: var(--text-dim);
+            font-size: 0.58rem;
+        }
+
+        .pub-link {
+            font-size: 0.67rem;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .pub-link:hover {
+            color: var(--teal-bright);
+        }
+
+        /* ── CTA SECTION ───────────────────────────── */
+        .cta-section {
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .cta-inner h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .cta-inner p {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── RESPONSIVE ────────────────────────────── */
+        @media (max-width: 900px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding-top: 100px;
+            }
+
+            .hero-visual {
+                height: 280px;
+            }
+
+            .discoveries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pubs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-section {
+                padding: 100px 20px 60px;
+            }
+
+            .stats-inner {
+                padding: 28px 20px;
+            }
+
+            .cta-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+
+    <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+            MedScholars
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="submit.html">Submit Research</a></li>
+        </ul>
+
+        <div class="nav-right">
+    </nav>
+
+    <!-- ═══ HERO ════════════════════════════════════════ -->
+    <div class="hero-section">
+        <div>
+            <div class="hero-eyebrow">Now Accepting 2026 Grants</div>
+            <h1>Empowering<br><em>Medical Scholars</em><br>in Bangladesh</h1>
+            <p class="hero-desc">Join the nation's premier platform for medical research, cross-institutional
+                collaboration, and academic excellence. Connect with over 1,200 active scholars today.</p>
+            <div class="hero-actions">
+                <a href="research.html" class="btn btn-primary">Start Your Study <i class="fas fa-arrow-right"></i></a>
+                <a href="research.html" class="btn btn-secondary">Browse Research</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-badge badge-grant">
+                <div class="badge-icon green"><i class="fas fa-check"></i></div>
+                <div>
+                    <div class="badge-label">Grant Approved</div>
+                    <div class="badge-sub">৳50,000 Research Grant</div>
+                </div>
+            </div>
+
+            <div class="hero-img-main">
+                <img src="assets/images/hero_lab.png" alt="Medical researcher in laboratory" />
+            </div>
+
+            <div class="hero-img-secondary">
+                <img src="assets/images/doctor.png" alt="Medical doctor" />
+            </div>
+
+            <div class="hero-badge badge-scholar">
+                <div class="badge-icon teal"><i class="fas fa-star"></i></div>
+                <div>
+                    <div class="badge-label">Top Scholar</div>
+                    <div class="badge-sub">Dr. Nusrat Islam · BSMMU</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ STATS BAR ══════════════════════════════════ -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item fade-in">
+                <div class="stat-value" data-count="500" data-suffix="+">500+</div>
+                <div class="stat-label">Articles Published</div>
+            </div>
+            <div class="stat-item fade-in" style="transition-delay:.1s">
+                <div class="stat-value" data-count="1200" data-suffix="+">1,200+</div>
+                <div class="stat-label">Active Scholars</div>
+            </div>
+            <div class="stat-item fade-in" style="transition-delay:.2s">
+                <div class="stat-value" data-prefix="$" data-count="50" data-suffix="k+">$50k+</div>
+                <div class="stat-label">Research Grants</div>
+            </div>
+            <div class="stat-item fade-in" style="transition-delay:.3s">
+                <div class="stat-value" data-count="25" data-suffix="+">25+</div>
+                <div class="stat-label">Institutions</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FEATURED DISCOVERIES ═══════════════════════ -->
+    <section>
+        <div class="container">
+            <div class="section-header fade-in">
+                <div>
+                    <h2>Featured Discoveries</h2>
+                    <p>Explore groundbreaking research projects selected by a trusted board for their impact on public
+                        health in Bangladesh.</p>
+                </div>
+                <a href="research.html" class="view-all">View All Research <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="discoveries-grid">
+                <div class="card fade-in">
+                    <div class="card-img disc-img">
+                        <img src="assets/images/cardio.png" alt="Cardiovascular research" />
+                        <span class="disc-tag">Cardiology</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="disc-title">Cardiovascular Trends in Dhaka Urban Centers</div>
+                        <div class="disc-desc">An extensive meta-study analyzing the impact of lifestyle decisions on
+                            heart conditions in dense urban Bangladeshi settings.</div>
+                        <div class="disc-meta">
+                            <div class="author-row">
+                                <div class="avatar">NI</div>
+                                <div>
+                                    <div class="author-name-sm">Dr. N. Islam</div>
+                                    <div class="author-role-sm">Cardiologist · BSMMU</div>
+                                </div>
+                            </div>
+                            <span class="disc-date">Oct 12, 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in" style="transition-delay:.1s">
+                    <div class="card-img disc-img">
+                        <img src="assets/images/rural.png" alt="Rural health initiatives" />
+                        <span class="disc-tag">Public Health</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="disc-title">Rural Health Initiatives: 2025 Impact Report</div>
+                        <div class="disc-desc">Evaluating mobile disease clinics in Sylhet and Khulna rural districts
+                            with field data analysis and outcome metrics.</div>
+                        <div class="disc-meta">
+                            <div class="author-row">
+                                <div class="avatar blue">SK</div>
+                                <div>
+                                    <div class="author-name-sm">Prof. S. Khan</div>
+                                    <div class="author-role-sm">Epidemiologist · DGHS</div>
+                                </div>
+                            </div>
+                            <span class="disc-date">Sep 22, 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in" style="transition-delay:.2s">
+                    <div class="card-img disc-img">
+                        <img src="assets/images/telemedicine.png" alt="Telemedicine adoption" />
+                        <span class="disc-tag">Health Tech</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="disc-title">Telemedicine Adoption Rates Post-Pandemic</div>
+                        <div class="disc-desc">A comprehensive analysis of digital health tool adoption across rural and
+                            urban areas in Bangladesh post-COVID.</div>
+                        <div class="disc-meta">
+                            <div class="author-row">
+                                <div class="avatar orange">RA</div>
+                                <div>
+                                    <div class="author-name-sm">Dr. R. Ahmed</div>
+                                    <div class="author-role-sm">Health Informatics · BSMMU</div>
+                                </div>
+                            </div>
+                            <span class="disc-date">Nov 05, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ RECENT PUBLICATIONS ════════════════════════ -->
+    <section class="pubs-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div>
+                    <h2>Recent Publications</h2>
+                    <p>Peer-reviewed articles and field reports from our active scholars community.</p>
+                </div>
+                <a href="publications.html" class="view-all">View Library <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="pubs-grid">
+                <div class="pub-row fade-in">
+                    <div class="pub-icon red"><i class="fas fa-virus"></i></div>
+                    <div>
+                        <div class="pub-title-sm">Dengue Virus Serotype Distribution 2024</div>
+                        <div class="pub-meta-row">
+                            <span class="pub-field">Virology</span><span class="pub-dot">·</span>
+                            <span class="pub-field">Peer-reviewed</span><span class="pub-dot">·</span>
+                            <a href="article.html" class="pub-link">Read Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-row fade-in" style="transition-delay:.05s">
+                    <div class="pub-icon blue"><i class="fas fa-child"></i></div>
+                    <div>
+                        <div class="pub-title-sm">Pediatric Malnutrition Guidelines Update</div>
+                        <div class="pub-meta-row">
+                            <span class="pub-field">Pediatrics</span><span class="pub-dot">·</span>
+                            <span class="pub-field">Policy Brief</span><span class="pub-dot">·</span>
+                            <a href="article.html" class="pub-link">Read Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-row fade-in" style="transition-delay:.1s">
+                    <div class="pub-icon green"><i class="fas fa-pills"></i></div>
+                    <div>
+                        <div class="pub-title-sm">Antibiotic Resistance in ICU Settings</div>
+                        <div class="pub-meta-row">
+                            <span class="pub-field">Microbiology</span><span class="pub-dot">·</span>
+                            <span class="pub-field">Peer-reviewed</span><span class="pub-dot">·</span>
+                            <a href="article.html" class="pub-link">Read Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-row fade-in" style="transition-delay:.15s">
+                    <div class="pub-icon orange"><i class="fas fa-brain"></i></div>
+                    <div>
+                        <div class="pub-title-sm">Mental Health Survey of Medical Students</div>
+                        <div class="pub-meta-row">
+                            <span class="pub-field">Psychiatry</span><span class="pub-dot">·</span>
+                            <span class="pub-field">Peer-reviewed</span><span class="pub-dot">·</span>
+                            <a href="article.html" class="pub-link">Read Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-row fade-in" style="transition-delay:.2s">
+                    <div class="pub-icon teal"><i class="fas fa-x-ray"></i></div>
+                    <div>
+                        <div class="pub-title-sm">AI in Diagnostic Radiology: A Review</div>
+                        <div class="pub-meta-row">
+                            <span class="pub-field">Technology</span><span class="pub-dot">·</span>
+                            <span class="pub-field">Open Access</span><span class="pub-dot">·</span>
+                            <a href="article.html" class="pub-link">Read Online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pub-row fade-in" style="transition-delay:.25s">
+                    <div class="pub-icon purple"><i class="fas fa-heart-pulse"></i></div>
+                    <div>
+                        <div class="pub-title-sm">Diabetes Management in Coastal Regions</div>
+                        <div class="pub-meta-row">
+                            <span class="pub-field">Endocrinology</span><span class="pub-dot">·</span>
+                            <span class="pub-field">PDF 1.2 MB</span><span class="pub-dot">·</span>
+                            <a href="publications.html" class="pub-link">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center">
+                <a href="publications.html" class="btn btn-secondary">Load More Publications</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ══════════════════════════════════════════ -->
+    <div class="cta-section">
+        <div class="cta-inner fade-in">
+            <h2>Ready to Contribute to Science?</h2>
+            <p>Share your findings with the community. We provide peer review support, grant application assistance, and
+                global visibility for Bangladeshi researchers.</p>
+            <div class="cta-actions">
+                <a href="submit.html" class="btn btn-primary">Start Submission <i class="fas fa-arrow-right"></i></a>
+                <a href="submit.html" class="btn btn-secondary">Learn About Guidelines</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ FOOTER ════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">
+                    <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+                    MedScholars
+                </a>
+                <p>Advancing health knowledge through collaboration and research excellence in Bangladesh.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="research.html">Browse Research</a></li>
+                    <li><a href="submit.html">Submit Manuscript</a></li>
+                    <li><a href="publications.html">Grants &amp; Funding</a></li>
+                    <li><a href="research.html">Scholar Profiles</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Institutions</a></li>
+                    <li><a href="#">Find a Partner</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:hello@medscholars.bd">hello@medscholars.bd</a></li>
+                    <li><a href="mailto:support@medscholars.bd">support@medscholars.bd</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 MedScholars Bangladesh. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

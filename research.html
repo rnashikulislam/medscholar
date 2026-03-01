@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research – Discover Latest Medical Insights | MedScholars BD</title>
+    <meta name="description"
+        content="Discover the latest medical research insights, articles, and studies from Bangladesh's leading scholars." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        /* ── PAGE HEADER ───────────────────────────── */
+        .research-header {
+            padding: 56px 40px 48px;
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .research-header h1 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 28px;
+        }
+
+        /* Search */
+        .search-bar-wrap {
+            display: flex;
+            align-items: center;
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .search-bar-wrap:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 203, 184, 0.1);
+        }
+
+        .search-bar-wrap i {
+            margin-left: 18px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .search-bar-wrap input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            padding: 14px 16px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .search-bar-wrap input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-btn {
+            background: var(--teal-light);
+            color: #fff;
+            border: none;
+            padding: 0 24px;
+            height: 52px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--teal-bright);
+        }
+
+        /* Category pills */
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 7px 18px;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cat-pill:hover {
+            color: var(--white);
+            border-color: var(--accent);
+            background: var(--teal-glow);
+        }
+
+        .cat-pill.active {
+            background: var(--teal-light);
+            border-color: var(--teal-light);
+            color: #fff;
+        }
+
+        /* ── MAIN LAYOUT ───────────────────────────── */
+        .research-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ── ARTICLE GRID ──────────────────────────── */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .art-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+            cursor: pointer;
+        }
+
+        .art-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+            border-color: rgba(45, 203, 184, 0.3);
+        }
+
+        .art-img {
+            height: 165px;
+            overflow: hidden;
+        }
+
+        .art-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s;
+        }
+
+        .art-card:hover .art-img img {
+            transform: scale(1.05);
+        }
+
+        .art-body {
+            padding: 16px 18px 20px;
+        }
+
+        .art-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        .art-meta span i {
+            margin-right: 3px;
+        }
+
+        .art-dot {
+            color: var(--text-dim);
+        }
+
+        .art-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .art-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .art-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* ── SIDEBAR ───────────────────────────────── */
+        .research-sidebar {
+            position: sticky;
+            top: 78px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sidebar-widget {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .sidebar-widget.cta-widget {
+            background: linear-gradient(135deg, rgba(26, 122, 110, 0.25), rgba(45, 203, 184, 0.1));
+            border-color: rgba(45, 203, 184, 0.25);
+        }
+
+        .widget-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--white);
+        }
+
+        .popular-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .popular-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .popular-rank {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--teal-bright);
+            opacity: 0.35;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 26px;
+        }
+
+
+
+        .popular-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.35;
+            margin-bottom: 3px;
+        }
+
+        .popular-views {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        .cta-widget p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .weekly-digest p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        /* Pagination */
+        @media (max-width: 900px) {
+            .research-layout {
+                grid-template-columns: 1fr;
+                padding: 0 20px 40px;
+            }
+
+            .research-sidebar {
+                position: static;
+            }
+
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-header {
+                padding: 40px 20px 36px;
+            }
+
+            .category-pills {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-tl"></div>
+
+    <!-- ═══ NAVBAR ════════════════════════════════════════ -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+            MedScholars BD
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html" class="active">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="submit.html">Submit Research</a></li>
+        </ul>
+
+        <div class="nav-right">
+        </div>
+    </nav>
+
+    <!-- ═══ HEADER + SEARCH ═══════════════════════════════ -->
+    <div class="research-header">
+        <h1>Discover Latest Medical Insights</h1>
+        <div class="search-bar-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search research papers, topics, authors, or DOIs…" />
+            <button class="search-btn">Search</button>
+        </div>
+        <div class="category-pills filter-group">
+            <button class="cat-pill">All Posts</button>
+            <button class="cat-pill active">AI in Medicine</button>
+            <button class="cat-pill">Public Health</button>
+            <button class="cat-pill">Cardiology</button>
+            <button class="cat-pill">Epidemiology</button>
+            <button class="cat-pill">Telemedicine</button>
+            <button class="cat-pill">Pediatrics</button>
+        </div>
+    </div>
+
+    <!-- ═══ CONTENT ════════════════════════════════════════ -->
+    <div class="research-layout">
+
+        <!-- Articles -->
+        <div>
+            <div class="article-grid">
+
+                <a href="article.html" class="art-card fade-in" style="text-decoration:none;color:inherit;">
+                    <div class="art-img">
+                        <img src="assets/images/telemedicine.png" alt="AI rural diagnostics" />
+                        <span class="tag tag-ai" style="position:absolute;top:12px;left:12px;z-index:1;">AI &amp;
+                            Tech</span>
+                    </div>
+                    <div class="art-body">
+                        <div class="art-meta">
+                            <span><i class="fas fa-calendar-alt"></i>Oct 24, 2023</span>
+                            <span class="art-dot">•</span>
+                            <span><i class="fas fa-clock"></i>5 min read</span>
+                        </div>
+                        <div class="art-title">AI Applications in Rural Diagnostics: Bridging the Gap in Bangladesh
+                        </div>
+                        <div class="art-desc">Exploring how machine learning algorithms are being deployed in community
+                            clinics to assist health workers in early disease detection.</div>
+                        <div class="art-footer">
+                            <div class="author-row">
+                                <div class="avatar"
+                                    style="background:var(--blue);width:28px;height:28px;font-size:.63rem;">DA</div>
+                                <span style="font-size:.8rem;color:var(--text-muted);">Dr. Ayesha Ahmed</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="article.html" class="art-card fade-in"
+                    style="text-decoration:none;color:inherit;transition-delay:.08s">
+                    <div class="art-img">
+                        <img src="assets/images/cardio.png" alt="Cardiac surgery BIRDEM" />
+                        <span class="tag tag-cardiology"
+                            style="position:absolute;top:12px;left:12px;z-index:1;">Cardiology</span>
+                    </div>
+                    <div class="art-body">
+                        <div class="art-meta">
+                            <span><i class="fas fa-calendar-alt"></i>Oct 22, 2023</span>
+                            <span class="art-dot">•</span>
+                            <span><i class="fas fa-clock"></i>12 min read</span>
+                        </div>
+                        <div class="art-title">Advances in Minimally Invasive Cardiac Procedures at BIRDEM</div>
+                        <div class="art-desc">A comprehensive review of the latest surgical techniques reducing recovery
+                            times for heart patients in Dhaka.</div>
+                        <div class="art-footer">
+                            <div class="author-row">
+                                <div class="avatar orange" style="width:28px;height:28px;font-size:.63rem;">RK</div>
+                                <span style="font-size:.8rem;color:var(--text-muted);">Prof. Rafiq Khan</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="article.html" class="art-card fade-in"
+                    style="text-decoration:none;color:inherit;transition-delay:.16s">
+                    <div class="art-img">
+                        <img src="assets/images/dengue.png" alt="Dengue outbreak" />
+                        <span class="tag tag-epidemiology"
+                            style="position:absolute;top:12px;left:12px;z-index:1;">Epidemiology</span>
+                    </div>
+                    <div class="art-body">
+                        <div class="art-meta">
+                            <span><i class="fas fa-calendar-alt"></i>Oct 18, 2023</span>
+                            <span class="art-dot">•</span>
+                            <span><i class="fas fa-clock"></i>8 min read</span>
+                        </div>
+                        <div class="art-title">Dengue Outbreak Analysis: Patterns Shift in 2024</div>
+                        <div class="art-desc">Analyzing the vector density and new serotype prevalence across major
+                            metropolitan areas during the monsoon season.</div>
+                        <div class="art-footer">
+                            <div class="author-row">
+                                <div class="avatar green" style="width:28px;height:28px;font-size:.63rem;">TS</div>
+                                <span style="font-size:.8rem;color:var(--text-muted);">Dr. Tasnim Subah</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="article.html" class="art-card fade-in"
+                    style="text-decoration:none;color:inherit;transition-delay:.24s">
+                    <div class="art-img">
+                        <img src="assets/images/hero_lab.png" alt="Telemedicine peri-urban" />
+                        <span class="tag tag-digital" style="position:absolute;top:12px;left:12px;z-index:1;">Digital
+                            Health</span>
+                    </div>
+                    <div class="art-body">
+                        <div class="art-meta">
+                            <span><i class="fas fa-calendar-alt"></i>Oct 15, 2023</span>
+                            <span class="art-dot">•</span>
+                            <span><i class="fas fa-clock"></i>6 min read</span>
+                        </div>
+                        <div class="art-title">Telemedicine Adoption Rates in Peri-urban Areas</div>
+                        <div class="art-desc">A statistical breakdown of user adoption, retention, and satisfaction
+                            regarding remote consultation platforms.</div>
+                        <div class="art-footer">
+                            <div class="author-row">
+                                <div class="avatar purple" style="width:28px;height:28px;font-size:.63rem;">MR</div>
+                                <span style="font-size:.8rem;color:var(--text-muted);">Mahmudur Rahman</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div><!-- /article-grid -->
+
+            <!-- Pagination -->
+            <div class="pagination fade-in">
+                <button class="pg-btn arrow" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pg-btn active">1</button>
+                <button class="pg-btn">2</button>
+                <button class="pg-btn">3</button>
+                <button class="pg-btn dots">…</button>
+                <button class="pg-btn">12</button>
+                <button class="pg-btn arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="research-sidebar">
+
+            <!-- CTA Widget -->
+            <div class="sidebar-widget cta-widget fade-in">
+                <div class="widget-title">Contribute to Science</div>
+                <p>Share your findings with the largest community of medical scholars in Bangladesh.</p>
+                <a href="submit.html" class="btn btn-outline"
+                    style="font-size:.82rem;padding:10px 16px;justify-content:center;width:100%;"><i
+                        class="fas fa-file-upload"></i> Submit Research</a>
+            </div>
+
+            <!-- Popular this week -->
+            <div class="sidebar-widget fade-in" style="transition-delay:.1s">
+                <div class="widget-title" style="display:flex;align-items:center;justify-content:space-between;">
+                    Popular This Week <i class="fas fa-chart-line" style="color:var(--accent);font-size:.85rem;"></i>
+                </div>
+                <div class="popular-list">
+                    <div class="popular-item">
+                        <div class="popular-rank">01</div>
+                        <div class="popular-info">
+                            <div class="popular-title">Diabetes Management in Urban Slums</div>
+                            <div class="popular-views">2.4k views</div>
+                        </div>
+                    </div>
+                    <div class="popular-item">
+                        <div class="popular-rank">02</div>
+                        <div class="popular-info">
+                            <div class="popular-title">Antibiotic Resistance in 2024</div>
+                            <div class="popular-views">1.8k views</div>
+                        </div>
+                    </div>
+                    <div class="popular-item">
+                        <div class="popular-rank">03</div>
+                        <div class="popular-info">
+                            <div class="popular-title">Mental Health Policy Reform</div>
+                            <div class="popular-views">1.2k views</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Digest -->
+            <div class="sidebar-widget weekly-digest fade-in" style="transition-delay:.2s">
+                <div class="widget-title">Weekly Digest</div>
+                <p>Get the top research papers delivered to your inbox every Friday.</p>
+                <form class="subscribe-form">
+                    <input class="input-field" type="email" placeholder="Your email address" />
+                    <button type="submit" class="btn btn-primary"
+                        style="padding:10px;font-size:.82rem;justify-content:center;margin-top:4px;">Subscribe</button>
+                </form>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- ═══ FOOTER ════════════════════════════════════════ -->
+    <footer class="site-footer" style="margin-top:0;">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">
+                    <div class="nav-logo-icon"><i class="fas fa-dna"></i></div>
+                    MedScholars Bangladesh
+                </a>
+                <p>Advancing health knowledge through collaboration and research excellence in Bangladesh.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="research.html">Browse Research</a></li>
+                    <li><a href="submit.html">Submit Manuscript</a></li>
+                    <li><a href="#">Grants &amp; Funding</a></li>
+                    <li><a href="#">Scholar Profiles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Institutions</a></li>
+                    <li><a href="#">Find a Partner</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 MedScholars BD. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Pagination click
+        document.querySelectorAll('.pg-btn:not(.arrow):not(.dots)').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
